@@ -4,26 +4,29 @@ import './index.css';
 
 class Square extends React.Component {
     //Añadimos estado del componente antes del render
-    constructor(props){
-        super(props);
-        this.state={
-            value:null
-        };
-    }
+    //Se elimina una vez creamos el array squares en el state de board
     render() {
       return (
         //Con esto imprimos como etiquita html la propiedad valor
         // del componente square que 
-        <button className="square" onClick={()=>this.setState({value: 'X'})}>
-          {this.state.value}
+        <button className="square" onClick={()=>this.props.onClick()}>
+          {this.props.value}
         </button>
       );
     }
   }
   
   class Board extends React.Component {
+    //AÑADIMOS Constructor a Board
+    constructor(props){
+        super(props);
+            this.state={
+                squares:Array(9).fill(null),
+            };
+        }
+    
     renderSquare(i) {
-      return <Square value={i}/>;
+      return <Square value={this.state.squares[i]} onClick={()=> this.handleClick(i)}/>;
     }
   
     render() {
