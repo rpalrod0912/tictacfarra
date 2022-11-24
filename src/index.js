@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 class Square extends React.Component {
+    //Añadimos estado del componente antes del render
+    constructor(props){
+        super(props);
+        this.state={
+            value:null
+        };
+    }
     render() {
       return (
-        <button className="square">
-          {this.props.value}
+        //Con esto imprimos como etiquita html la propiedad valor
+        // del componente square que 
+        <button className="square" onClick={()=>this.setState({value: 'X'})}>
+          {this.state.value}
         </button>
       );
     }
